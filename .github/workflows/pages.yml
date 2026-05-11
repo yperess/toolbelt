@@ -30,7 +30,7 @@ jobs:
       - name: upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{github.workspace}}/bazel-out/k8-fastbuild/bin/docs/_build/html
+          path: ${{github.workspace}}/bazel-bin/docs/docs/_build/html
       - name: deploy
         id: deployment
         uses: actions/deploy-pages@v4
