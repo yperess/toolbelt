@@ -17,10 +17,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: install bazelisk
-        run: |
-          curl -fsSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64 \
-            -o /usr/local/bin/bazelisk
-          chmod +x /usr/local/bin/bazelisk
+        uses: bazel-contrib/setup-bazel@0.9.0
+        with:
+          # Caches Bazelisk downloads based on .bazelversion
+          bazelisk-cache: true
+          # Caches Bazel external repositories and build outputs
+          repository-cache: true
       - name: configure
         uses: actions/configure-pages@v5
       - name: build
