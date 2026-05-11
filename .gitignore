@@ -1,0 +1,11 @@
+bazel-*
+
+# CMake output
+out/
+
+# Managed by Pigweed bootstrap.sh
+build_overrides/pigweed_environment.gni
+environment/
+
+# Pigweed IDE processed compile commands (machine-specific)
+.pw_ide/

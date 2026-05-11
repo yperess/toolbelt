@@ -1,0 +1,48 @@
+load("@rules_python//sphinxdocs:sphinx.bzl", "sphinx_build_binary", "sphinx_docs")
+load("@rules_python//sphinxdocs:sphinx_docs_library.bzl", "sphinx_docs_library")
+
+sphinx_docs_library(
+  name = "sources",
+  srcs = [
+    "_static/css/toolbelt.css",
+    "_static/js/toolbelt.js",
+    "layout/layout.html",
+    "index.rst",
+    "modules.rst",
+    "//dsp:docs",
+  ],
+  strip_prefix = "docs/",
+)
+
+sphinx_build_binary(
+  name = "sphinx",
+  deps = [
+    "@pypi//pydata_sphinx_theme",
+    "@pypi//sphinx",
+    "@pypi//sphinxcontrib_mermaid",
+    "@pypi//sphinxcontrib_wavedrom",
+    "@pypi//sphinx_design",
+    "@pypi//sphinx_reredirects",
+    "@pypi//sphinx_sitemap",
+  ],
+)
+
+sphinx_docs(
+  name = "docs",
+  config = "conf.py",
+  formats = [
+    "html",
+  ],
+  sphinx = ":sphinx",
+  strip_prefix = "docs/",
+  deps = [
+    ":sources",
+  ],
+)
+
+sh_binary(
+  name = "open",
+  srcs = ["open_browser.sh"],
+  data = [":docs"],
+  args = ["$(location :docs)/index.html"],
+)

@@ -1,0 +1,9 @@
+
+{% extends "pydata_sphinx_theme/layout.html" %}
+
+{% block docs_main %}
+  {{ super() }}
+  {# Always load toolbelt.js after Sphinx's search scripts because toolbelt.js
+     relies on classes and data from Sphinx's scripts. #}
+  <script src="{{ pathto('_static/js/toolbelt.js', 1) | e }}"></script>
+{% endblock docs_main %}

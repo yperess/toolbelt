@@ -1,0 +1,41 @@
+{
+  "pw": {
+    "pw_cli": {
+      "plugins": {
+      }
+    },
+    "pw_presubmit": {
+      "format": {
+        "python_formatter": "black",
+        "exclude": [
+          "^patches\\.json$"
+        ]
+      }
+    },
+    "pw_env_setup": {
+      "root_variable": "TOOLBELT_PROJECT_ROOT",
+      "relative_pigweed_root": "third_party/pigweed",
+      "cipd_package_files": [
+        "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/bazelisk.json",
+        "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/cmake.json",
+        "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/default.json",
+        "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/kythe.json"
+      ],
+      "virtualenv": {
+        "gn_root": ".",
+        "requirements": [
+          "requirements.txt"
+        ],
+        "extra_vars": {
+        },
+        "gn_targets": [
+          ":pip_install_marksmen_tools.install"
+        ]
+      },
+      "gni_file": "build_overrides/pigweed_environment.gni",
+      "required_submodules": [
+        "third_party/pigweed"
+      ]
+    }
+  }
+}

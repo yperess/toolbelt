@@ -1,0 +1,13 @@
+
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
+
+compile_pip_requirements(
+  name = "requirements",
+  requirements_in = "env_setup/virtualenv_setup/requirements.txt",
+  requirements_txt = "env_setup/virtualenv_setup/requirements.lock",
+)
+
+alias(
+  name = "update_requirements",
+  actual = "requirements.update",
+)

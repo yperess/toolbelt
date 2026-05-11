@@ -1,0 +1,53 @@
+/* 1. Style the main container for the diagram */
+[data-theme="dark"] .mermaid {
+    background-color: #2a2f3a !important; /* The container "card" */
+    border: 1px solid #4d566a;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+/* 2. --- Node Styling (Shapes) --- */
+/* CORRECTED SELECTOR: Targets the <rect> and <circle> elements inside a .node group */
+[data-theme="dark"] .mermaid .node rect,
+[data-theme="dark"] .mermaid .node circle,
+[data-theme="dark"] .mermaid .node polygon {
+    fill: #4d566a !important;        /* Dark, muted blue/grey for node backgrounds */
+    stroke: #f79c9c !important;      /* Bright, techy cyan for borders */
+    stroke-width: 2px !important;
+}
+
+/* 3. --- Text Styling (for both nodes and edges) --- */
+/* CORRECTED SELECTOR: Targets the <p> tag inside .nodeLabel and .edgeLabel spans */
+[data-theme="dark"] .mermaid .nodeLabel p,
+[data-theme="dark"] .mermaid .edgeLabel p {
+    fill: #a3b2bc !important;        /* Bright, off-white for all text */
+    color: #e6edf2 !important;       /* Use 'color' as well for foreignObject content */
+    background-color: #4d566a !important;
+}
+
+/* 4. --- Edge and Arrowhead Styling --- */
+/* CORRECTED SELECTOR: Targets the <path> elements inside the .edgePaths group */
+[data-theme="dark"] .mermaid .edgePaths path {
+    stroke: #f15252 !important;      /* Match the line color to the bright border color */
+    stroke-width: 3px !important;
+}
+
+/* CORRECTED SELECTOR: Targets the <path> inside the <marker> for arrowheads */
+[data-theme="dark"] .mermaid .marker path {
+    fill: #f15252 !important;        /* Match the arrowhead color */
+    stroke: #f15252 !important;      /* Ensure the arrowhead border matches too */
+}
+
+/* 5. --- Edge Label Background --- */
+/* CORRECTED SELECTOR: Targets the <div> with class .labelBkg that sits behind edge text */
+[data-theme="dark"] .mermaid .labelBkg {
+    background-color: #2a2f3a !important; /* Make the box behind edge text match the container */
+}
+/* 3. --- Text Styling (for both nodes and edges) --- */
+/* This single rule targets all text to ensure it's bright and readable */
+[data-theme="dark"] .mermaid svg tspan {
+    fill: #e6edf2 !important;        /* A bright, slightly soft off-white for all text */
+    font-size: 1.1em !important;     /* Make the font 10% larger */
+}
+
+/* This is a fallback to ensure the rect behind the foreignObject is also transparent */
